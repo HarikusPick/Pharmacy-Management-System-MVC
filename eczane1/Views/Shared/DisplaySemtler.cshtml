@@ -1,0 +1,10 @@
+﻿@model eczane1.Models.tbl_semt
+    <option value="">--semt seçin--</option>
+
+@if (ViewBag.semtList != null)
+{
+    foreach (var item in ViewBag.semtList)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}

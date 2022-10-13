@@ -1,0 +1,665 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EczaneDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_admin">
+          <Key>
+            <PropertyRef Name="admin_id" />
+          </Key>
+          <Property Name="admin_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="admin_nickname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="admin_password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="admin_ad" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_eczane">
+          <Key>
+            <PropertyRef Name="eczane_id" />
+          </Key>
+          <Property Name="eczane_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="eczane_nickname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="eczane_password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="eczane_tescil" Type="int" />
+          <Property Name="eczane_ad" Type="varchar" MaxLength="50" />
+          <Property Name="eczane_telefon" Type="varchar" MaxLength="50" />
+          <Property Name="mahalle_id" Type="int" Nullable="false" />
+          <Property Name="rol_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_eczane_ilac">
+          <Key>
+            <PropertyRef Name="eczene_ilac_id" />
+          </Key>
+          <Property Name="eczene_ilac_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="eczane_id" Type="int" Nullable="false" />
+          <Property Name="ilac_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_il">
+          <Key>
+            <PropertyRef Name="il_id" />
+          </Key>
+          <Property Name="il_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="il_ad" Type="nvarchar" MaxLength="16" />
+        </EntityType>
+        <EntityType Name="tbl_ilac">
+          <Key>
+            <PropertyRef Name="ilac_id" />
+          </Key>
+          <Property Name="ilac_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ilac_ad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ilac_kod" Type="int" Nullable="false" />
+          <Property Name="ilac_skt" Type="time" Precision="0" />
+          <Property Name="ilac_fiyat" Type="smallmoney" />
+          <Property Name="ilac_turu_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_ilac_turu">
+          <Key>
+            <PropertyRef Name="ilac_turu_id" />
+          </Key>
+          <Property Name="ilac_turu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ilac_turu_ad" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_ilce">
+          <Key>
+            <PropertyRef Name="ilce_id" />
+          </Key>
+          <Property Name="ilce_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="il_id" Type="smallint" Nullable="false" />
+          <Property Name="ilce_ad" Type="nvarchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="tbl_kullanici">
+          <Key>
+            <PropertyRef Name="kullanici_id" />
+          </Key>
+          <Property Name="kullanici_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullanici_nickname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="kullanici_password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="kullanici_ad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="kullanici_soyad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="kullanici_telefon" Type="varchar" MaxLength="50" />
+          <Property Name="rol_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_mahalle">
+          <Key>
+            <PropertyRef Name="mahalle_id" />
+          </Key>
+          <Property Name="mahalle_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="semt_id" Type="smallint" Nullable="false" />
+          <Property Name="mahalle_ad" Type="nvarchar" MaxLength="40" />
+          <Property Name="pk_id" Type="smallint" />
+        </EntityType>
+        <EntityType Name="tbl_rol">
+          <Key>
+            <PropertyRef Name="rol_id" />
+          </Key>
+          <Property Name="rol_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rol_ad" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_semt">
+          <Key>
+            <PropertyRef Name="semt_id" />
+          </Key>
+          <Property Name="semt_id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ilce_id" Type="smallint" Nullable="false" />
+          <Property Name="semt_ad" Type="nvarchar" MaxLength="32" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'EczaneDataBase.dbo.vw_tumunugoster' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="vw_tumunugoster">
+          <Property Name="il_ad" Type="nvarchar" MaxLength="16" />
+          <Property Name="ilce_ad" Type="nvarchar" MaxLength="32" />
+          <Property Name="semt_ad" Type="nvarchar" MaxLength="32" />
+          <Property Name="mahalle_ad" Type="nvarchar" MaxLength="40" />
+          <Property Name="kod" Type="char" MaxLength="5" />
+        </EntityType>-->
+        <Association Name="FK_eczane_ilac_turu_eczane_id">
+          <End Role="tbl_eczane" Type="Self.tbl_eczane" Multiplicity="1" />
+          <End Role="tbl_eczane_ilac" Type="Self.tbl_eczane_ilac" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_eczane">
+              <PropertyRef Name="eczane_id" />
+            </Principal>
+            <Dependent Role="tbl_eczane_ilac">
+              <PropertyRef Name="eczane_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eczane_ilac_turu_ilac_id">
+          <End Role="tbl_ilac" Type="Self.tbl_ilac" Multiplicity="1" />
+          <End Role="tbl_eczane_ilac" Type="Self.tbl_eczane_ilac" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ilac">
+              <PropertyRef Name="ilac_id" />
+            </Principal>
+            <Dependent Role="tbl_eczane_ilac">
+              <PropertyRef Name="ilac_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eczane_rol">
+          <End Role="tbl_rol" Type="Self.tbl_rol" Multiplicity="1" />
+          <End Role="tbl_eczane" Type="Self.tbl_eczane" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_rol">
+              <PropertyRef Name="rol_id" />
+            </Principal>
+            <Dependent Role="tbl_eczane">
+              <PropertyRef Name="rol_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ilac_turu_id">
+          <End Role="tbl_ilac_turu" Type="Self.tbl_ilac_turu" Multiplicity="0..1" />
+          <End Role="tbl_ilac" Type="Self.tbl_ilac" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ilac_turu">
+              <PropertyRef Name="ilac_turu_id" />
+            </Principal>
+            <Dependent Role="tbl_ilac">
+              <PropertyRef Name="ilac_turu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kullanici_rol">
+          <End Role="tbl_rol" Type="Self.tbl_rol" Multiplicity="0..1" />
+          <End Role="tbl_kullanici" Type="Self.tbl_kullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_rol">
+              <PropertyRef Name="rol_id" />
+            </Principal>
+            <Dependent Role="tbl_kullanici">
+              <PropertyRef Name="rol_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mahalle">
+          <End Role="tbl_mahalle" Type="Self.tbl_mahalle" Multiplicity="1" />
+          <End Role="tbl_eczane" Type="Self.tbl_eczane" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_mahalle">
+              <PropertyRef Name="mahalle_id" />
+            </Principal>
+            <Dependent Role="tbl_eczane">
+              <PropertyRef Name="mahalle_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="il_ilce" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="il_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="il_ilce_semt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ilce_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="il_ilce_semt_mahalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="semt_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="mahalle_kodu_tam_adres" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mahalle_id" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="EczaneDataBaseModelStoreContainer">
+          <EntitySet Name="tbl_admin" EntityType="Self.tbl_admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_eczane" EntityType="Self.tbl_eczane" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_eczane_ilac" EntityType="Self.tbl_eczane_ilac" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_il" EntityType="Self.tbl_il" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ilac" EntityType="Self.tbl_ilac" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ilac_turu" EntityType="Self.tbl_ilac_turu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ilce" EntityType="Self.tbl_ilce" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_kullanici" EntityType="Self.tbl_kullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_mahalle" EntityType="Self.tbl_mahalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_rol" EntityType="Self.tbl_rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_semt" EntityType="Self.tbl_semt" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_eczane_ilac_turu_eczane_id" Association="Self.FK_eczane_ilac_turu_eczane_id">
+            <End Role="tbl_eczane" EntitySet="tbl_eczane" />
+            <End Role="tbl_eczane_ilac" EntitySet="tbl_eczane_ilac" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eczane_ilac_turu_ilac_id" Association="Self.FK_eczane_ilac_turu_ilac_id">
+            <End Role="tbl_ilac" EntitySet="tbl_ilac" />
+            <End Role="tbl_eczane_ilac" EntitySet="tbl_eczane_ilac" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eczane_rol" Association="Self.FK_eczane_rol">
+            <End Role="tbl_rol" EntitySet="tbl_rol" />
+            <End Role="tbl_eczane" EntitySet="tbl_eczane" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ilac_turu_id" Association="Self.FK_ilac_turu_id">
+            <End Role="tbl_ilac_turu" EntitySet="tbl_ilac_turu" />
+            <End Role="tbl_ilac" EntitySet="tbl_ilac" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kullanici_rol" Association="Self.FK_kullanici_rol">
+            <End Role="tbl_rol" EntitySet="tbl_rol" />
+            <End Role="tbl_kullanici" EntitySet="tbl_kullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mahalle" Association="Self.FK_mahalle">
+            <End Role="tbl_mahalle" EntitySet="tbl_mahalle" />
+            <End Role="tbl_eczane" EntitySet="tbl_eczane" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EczaneDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_admin">
+          <Key>
+            <PropertyRef Name="admin_id" />
+          </Key>
+          <Property Name="admin_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="admin_nickname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="admin_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="admin_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_eczane">
+          <Key>
+            <PropertyRef Name="eczane_id" />
+          </Key>
+          <Property Name="eczane_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="eczane_nickname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="eczane_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="eczane_tescil" Type="Int32" />
+          <Property Name="eczane_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="eczane_telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mahalle_id" Type="Int32" Nullable="false" />
+          <Property Name="rol_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_eczane_ilac" Relationship="Self.FK_eczane_ilac_turu_eczane_id" FromRole="tbl_eczane" ToRole="tbl_eczane_ilac" />
+          <NavigationProperty Name="tbl_rol" Relationship="Self.FK_eczane_rol" FromRole="tbl_eczane" ToRole="tbl_rol" />
+          <NavigationProperty Name="tbl_mahalle" Relationship="Self.FK_mahalle" FromRole="tbl_eczane" ToRole="tbl_mahalle" />
+        </EntityType>
+        <EntityType Name="tbl_eczane_ilac">
+          <Key>
+            <PropertyRef Name="eczene_ilac_id" />
+          </Key>
+          <Property Name="eczene_ilac_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="eczane_id" Type="Int32" Nullable="false" />
+          <Property Name="ilac_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_eczane" Relationship="Self.FK_eczane_ilac_turu_eczane_id" FromRole="tbl_eczane_ilac" ToRole="tbl_eczane" />
+          <NavigationProperty Name="tbl_ilac" Relationship="Self.FK_eczane_ilac_turu_ilac_id" FromRole="tbl_eczane_ilac" ToRole="tbl_ilac" />
+        </EntityType>
+        <EntityType Name="tbl_il">
+          <Key>
+            <PropertyRef Name="il_id" />
+          </Key>
+          <Property Name="il_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="il_ad" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_ilac">
+          <Key>
+            <PropertyRef Name="ilac_id" />
+          </Key>
+          <Property Name="ilac_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ilac_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ilac_kod" Type="Int32" Nullable="false" />
+          <Property Name="ilac_skt" Type="Time" Precision="0" />
+          <Property Name="ilac_fiyat" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="ilac_turu_id" Type="Int32" />
+          <NavigationProperty Name="tbl_eczane_ilac" Relationship="Self.FK_eczane_ilac_turu_ilac_id" FromRole="tbl_ilac" ToRole="tbl_eczane_ilac" />
+          <NavigationProperty Name="tbl_ilac_turu" Relationship="Self.FK_ilac_turu_id" FromRole="tbl_ilac" ToRole="tbl_ilac_turu" />
+        </EntityType>
+        <EntityType Name="tbl_ilac_turu">
+          <Key>
+            <PropertyRef Name="ilac_turu_id" />
+          </Key>
+          <Property Name="ilac_turu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ilac_turu_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_ilac" Relationship="Self.FK_ilac_turu_id" FromRole="tbl_ilac_turu" ToRole="tbl_ilac" />
+        </EntityType>
+        <EntityType Name="tbl_ilce">
+          <Key>
+            <PropertyRef Name="ilce_id" />
+          </Key>
+          <Property Name="ilce_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="il_id" Type="Int16" Nullable="false" />
+          <Property Name="ilce_ad" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_kullanici">
+          <Key>
+            <PropertyRef Name="kullanici_id" />
+          </Key>
+          <Property Name="kullanici_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullanici_nickname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="kullanici_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="kullanici_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="kullanici_soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="kullanici_telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rol_id" Type="Int32" />
+          <NavigationProperty Name="tbl_rol" Relationship="Self.FK_kullanici_rol" FromRole="tbl_kullanici" ToRole="tbl_rol" />
+        </EntityType>
+        <EntityType Name="tbl_mahalle">
+          <Key>
+            <PropertyRef Name="mahalle_id" />
+          </Key>
+          <Property Name="mahalle_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="semt_id" Type="Int16" Nullable="false" />
+          <Property Name="mahalle_ad" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="pk_id" Type="Int16" />
+          <NavigationProperty Name="tbl_eczane" Relationship="Self.FK_mahalle" FromRole="tbl_mahalle" ToRole="tbl_eczane" />
+        </EntityType>
+        <EntityType Name="tbl_rol">
+          <Key>
+            <PropertyRef Name="rol_id" />
+          </Key>
+          <Property Name="rol_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rol_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_eczane" Relationship="Self.FK_eczane_rol" FromRole="tbl_rol" ToRole="tbl_eczane" />
+          <NavigationProperty Name="tbl_kullanici" Relationship="Self.FK_kullanici_rol" FromRole="tbl_rol" ToRole="tbl_kullanici" />
+        </EntityType>
+        <EntityType Name="tbl_semt">
+          <Key>
+            <PropertyRef Name="semt_id" />
+          </Key>
+          <Property Name="semt_id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ilce_id" Type="Int16" Nullable="false" />
+          <Property Name="semt_ad" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_eczane_ilac_turu_eczane_id">
+          <End Role="tbl_eczane" Type="Self.tbl_eczane" Multiplicity="1" />
+          <End Role="tbl_eczane_ilac" Type="Self.tbl_eczane_ilac" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_eczane">
+              <PropertyRef Name="eczane_id" />
+            </Principal>
+            <Dependent Role="tbl_eczane_ilac">
+              <PropertyRef Name="eczane_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eczane_rol">
+          <End Role="tbl_rol" Type="Self.tbl_rol" Multiplicity="1" />
+          <End Role="tbl_eczane" Type="Self.tbl_eczane" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_rol">
+              <PropertyRef Name="rol_id" />
+            </Principal>
+            <Dependent Role="tbl_eczane">
+              <PropertyRef Name="rol_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mahalle">
+          <End Role="tbl_mahalle" Type="Self.tbl_mahalle" Multiplicity="1" />
+          <End Role="tbl_eczane" Type="Self.tbl_eczane" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_mahalle">
+              <PropertyRef Name="mahalle_id" />
+            </Principal>
+            <Dependent Role="tbl_eczane">
+              <PropertyRef Name="mahalle_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eczane_ilac_turu_ilac_id">
+          <End Role="tbl_ilac" Type="Self.tbl_ilac" Multiplicity="1" />
+          <End Role="tbl_eczane_ilac" Type="Self.tbl_eczane_ilac" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ilac">
+              <PropertyRef Name="ilac_id" />
+            </Principal>
+            <Dependent Role="tbl_eczane_ilac">
+              <PropertyRef Name="ilac_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ilac_turu_id">
+          <End Role="tbl_ilac_turu" Type="Self.tbl_ilac_turu" Multiplicity="0..1" />
+          <End Role="tbl_ilac" Type="Self.tbl_ilac" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ilac_turu">
+              <PropertyRef Name="ilac_turu_id" />
+            </Principal>
+            <Dependent Role="tbl_ilac">
+              <PropertyRef Name="ilac_turu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kullanici_rol">
+          <End Role="tbl_rol" Type="Self.tbl_rol" Multiplicity="0..1" />
+          <End Role="tbl_kullanici" Type="Self.tbl_kullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_rol">
+              <PropertyRef Name="rol_id" />
+            </Principal>
+            <Dependent Role="tbl_kullanici">
+              <PropertyRef Name="rol_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EczaneDataBaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_admin" EntityType="Self.tbl_admin" />
+          <EntitySet Name="tbl_eczane" EntityType="Self.tbl_eczane" />
+          <EntitySet Name="tbl_eczane_ilac" EntityType="Self.tbl_eczane_ilac" />
+          <EntitySet Name="tbl_il" EntityType="Self.tbl_il" />
+          <EntitySet Name="tbl_ilac" EntityType="Self.tbl_ilac" />
+          <EntitySet Name="tbl_ilac_turu" EntityType="Self.tbl_ilac_turu" />
+          <EntitySet Name="tbl_ilce" EntityType="Self.tbl_ilce" />
+          <EntitySet Name="tbl_kullanici" EntityType="Self.tbl_kullanici" />
+          <EntitySet Name="tbl_mahalle" EntityType="Self.tbl_mahalle" />
+          <EntitySet Name="tbl_rol" EntityType="Self.tbl_rol" />
+          <EntitySet Name="tbl_semt" EntityType="Self.tbl_semt" />
+          <AssociationSet Name="FK_eczane_ilac_turu_eczane_id" Association="Self.FK_eczane_ilac_turu_eczane_id">
+            <End Role="tbl_eczane" EntitySet="tbl_eczane" />
+            <End Role="tbl_eczane_ilac" EntitySet="tbl_eczane_ilac" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eczane_rol" Association="Self.FK_eczane_rol">
+            <End Role="tbl_rol" EntitySet="tbl_rol" />
+            <End Role="tbl_eczane" EntitySet="tbl_eczane" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mahalle" Association="Self.FK_mahalle">
+            <End Role="tbl_mahalle" EntitySet="tbl_mahalle" />
+            <End Role="tbl_eczane" EntitySet="tbl_eczane" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eczane_ilac_turu_ilac_id" Association="Self.FK_eczane_ilac_turu_ilac_id">
+            <End Role="tbl_ilac" EntitySet="tbl_ilac" />
+            <End Role="tbl_eczane_ilac" EntitySet="tbl_eczane_ilac" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ilac_turu_id" Association="Self.FK_ilac_turu_id">
+            <End Role="tbl_ilac_turu" EntitySet="tbl_ilac_turu" />
+            <End Role="tbl_ilac" EntitySet="tbl_ilac" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kullanici_rol" Association="Self.FK_kullanici_rol">
+            <End Role="tbl_rol" EntitySet="tbl_rol" />
+            <End Role="tbl_kullanici" EntitySet="tbl_kullanici" />
+          </AssociationSet>
+          <FunctionImport Name="il_ilce" ReturnType="Collection(EczaneDataBaseModel.il_ilce_Result)">
+            <Parameter Name="il_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="il_ilce_semt" ReturnType="Collection(EczaneDataBaseModel.il_ilce_semt_Result)">
+            <Parameter Name="ilce_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="il_ilce_semt_mahalle" ReturnType="Collection(EczaneDataBaseModel.il_ilce_semt_mahalle_Result)">
+            <Parameter Name="semt_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="mahalle_kodu_tam_adres" ReturnType="Collection(EczaneDataBaseModel.mahalle_kodu_tam_adres_Result)">
+            <Parameter Name="mahalle_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="il_ilce_Result">
+          <Property Type="String" Name="ilce_ad" Nullable="true" MaxLength="32" />
+          <Property Type="Int16" Name="ilce_id" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="il_ilce_semt_Result">
+          <Property Type="String" Name="semt_ad" Nullable="true" MaxLength="32" />
+          <Property Type="Int16" Name="semt_id" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="il_ilce_semt_mahalle_Result">
+          <Property Type="String" Name="mahalle_ad" Nullable="true" MaxLength="40" />
+          <Property Type="Int32" Name="mahalle_id" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="mahalle_kodu_tam_adres_Result">
+          <Property Type="Int32" Name="mahalle" Nullable="true" />
+          <Property Type="Int32" Name="semt" Nullable="true" />
+          <Property Type="Int32" Name="ilce" Nullable="true" />
+          <Property Type="Int32" Name="il" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EczaneDataBaseModelStoreContainer" CdmEntityContainer="EczaneDataBaseEntities">
+          <EntitySetMapping Name="tbl_admin">
+            <EntityTypeMapping TypeName="EczaneDataBaseModel.tbl_admin">
+              <MappingFragment StoreEntitySet="tbl_admin">
+                <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+                <ScalarProperty Name="admin_nickname" ColumnName="admin_nickname" />
+                <ScalarProperty Name="admin_password" ColumnName="admin_password" />
+                <ScalarProperty Name="admin_ad" ColumnName="admin_ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_eczane">
+            <EntityTypeMapping TypeName="EczaneDataBaseModel.tbl_eczane">
+              <MappingFragment StoreEntitySet="tbl_eczane">
+                <ScalarProperty Name="eczane_id" ColumnName="eczane_id" />
+                <ScalarProperty Name="eczane_nickname" ColumnName="eczane_nickname" />
+                <ScalarProperty Name="eczane_password" ColumnName="eczane_password" />
+                <ScalarProperty Name="eczane_tescil" ColumnName="eczane_tescil" />
+                <ScalarProperty Name="eczane_ad" ColumnName="eczane_ad" />
+                <ScalarProperty Name="eczane_telefon" ColumnName="eczane_telefon" />
+                <ScalarProperty Name="mahalle_id" ColumnName="mahalle_id" />
+                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_eczane_ilac">
+            <EntityTypeMapping TypeName="EczaneDataBaseModel.tbl_eczane_ilac">
+              <MappingFragment StoreEntitySet="tbl_eczane_ilac">
+                <ScalarProperty Name="eczene_ilac_id" ColumnName="eczene_ilac_id" />
+                <ScalarProperty Name="eczane_id" ColumnName="eczane_id" />
+                <ScalarProperty Name="ilac_id" ColumnName="ilac_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_il">
+            <EntityTypeMapping TypeName="EczaneDataBaseModel.tbl_il">
+              <MappingFragment StoreEntitySet="tbl_il">
+                <ScalarProperty Name="il_id" ColumnName="il_id" />
+                <ScalarProperty Name="il_ad" ColumnName="il_ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ilac">
+            <EntityTypeMapping TypeName="EczaneDataBaseModel.tbl_ilac">
+              <MappingFragment StoreEntitySet="tbl_ilac">
+                <ScalarProperty Name="ilac_id" ColumnName="ilac_id" />
+                <ScalarProperty Name="ilac_ad" ColumnName="ilac_ad" />
+                <ScalarProperty Name="ilac_kod" ColumnName="ilac_kod" />
+                <ScalarProperty Name="ilac_skt" ColumnName="ilac_skt" />
+                <ScalarProperty Name="ilac_fiyat" ColumnName="ilac_fiyat" />
+                <ScalarProperty Name="ilac_turu_id" ColumnName="ilac_turu_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ilac_turu">
+            <EntityTypeMapping TypeName="EczaneDataBaseModel.tbl_ilac_turu">
+              <MappingFragment StoreEntitySet="tbl_ilac_turu">
+                <ScalarProperty Name="ilac_turu_id" ColumnName="ilac_turu_id" />
+                <ScalarProperty Name="ilac_turu_ad" ColumnName="ilac_turu_ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ilce">
+            <EntityTypeMapping TypeName="EczaneDataBaseModel.tbl_ilce">
+              <MappingFragment StoreEntitySet="tbl_ilce">
+                <ScalarProperty Name="ilce_id" ColumnName="ilce_id" />
+                <ScalarProperty Name="il_id" ColumnName="il_id" />
+                <ScalarProperty Name="ilce_ad" ColumnName="ilce_ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_kullanici">
+            <EntityTypeMapping TypeName="EczaneDataBaseModel.tbl_kullanici">
+              <MappingFragment StoreEntitySet="tbl_kullanici">
+                <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+                <ScalarProperty Name="kullanici_nickname" ColumnName="kullanici_nickname" />
+                <ScalarProperty Name="kullanici_password" ColumnName="kullanici_password" />
+                <ScalarProperty Name="kullanici_ad" ColumnName="kullanici_ad" />
+                <ScalarProperty Name="kullanici_soyad" ColumnName="kullanici_soyad" />
+                <ScalarProperty Name="kullanici_telefon" ColumnName="kullanici_telefon" />
+                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_mahalle">
+            <EntityTypeMapping TypeName="EczaneDataBaseModel.tbl_mahalle">
+              <MappingFragment StoreEntitySet="tbl_mahalle">
+                <ScalarProperty Name="mahalle_id" ColumnName="mahalle_id" />
+                <ScalarProperty Name="semt_id" ColumnName="semt_id" />
+                <ScalarProperty Name="mahalle_ad" ColumnName="mahalle_ad" />
+                <ScalarProperty Name="pk_id" ColumnName="pk_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_rol">
+            <EntityTypeMapping TypeName="EczaneDataBaseModel.tbl_rol">
+              <MappingFragment StoreEntitySet="tbl_rol">
+                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+                <ScalarProperty Name="rol_ad" ColumnName="rol_ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_semt">
+            <EntityTypeMapping TypeName="EczaneDataBaseModel.tbl_semt">
+              <MappingFragment StoreEntitySet="tbl_semt">
+                <ScalarProperty Name="semt_id" ColumnName="semt_id" />
+                <ScalarProperty Name="ilce_id" ColumnName="ilce_id" />
+                <ScalarProperty Name="semt_ad" ColumnName="semt_ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="il_ilce" FunctionName="EczaneDataBaseModel.Store.il_ilce">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EczaneDataBaseModel.il_ilce_Result">
+                <ScalarProperty Name="ilce_ad" ColumnName="ilce_ad" />
+                <ScalarProperty Name="ilce_id" ColumnName="ilce_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="il_ilce_semt" FunctionName="EczaneDataBaseModel.Store.il_ilce_semt">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EczaneDataBaseModel.il_ilce_semt_Result">
+                <ScalarProperty Name="semt_ad" ColumnName="semt_ad" />
+                <ScalarProperty Name="semt_id" ColumnName="semt_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="il_ilce_semt_mahalle" FunctionName="EczaneDataBaseModel.Store.il_ilce_semt_mahalle">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EczaneDataBaseModel.il_ilce_semt_mahalle_Result">
+                <ScalarProperty Name="mahalle_ad" ColumnName="mahalle_ad" />
+                <ScalarProperty Name="mahalle_id" ColumnName="mahalle_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="mahalle_kodu_tam_adres" FunctionName="EczaneDataBaseModel.Store.mahalle_kodu_tam_adres">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EczaneDataBaseModel.mahalle_kodu_tam_adres_Result">
+                <ScalarProperty Name="mahalle" ColumnName="mahalle" />
+                <ScalarProperty Name="semt" ColumnName="semt" />
+                <ScalarProperty Name="ilce" ColumnName="ilce" />
+                <ScalarProperty Name="il" ColumnName="il" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

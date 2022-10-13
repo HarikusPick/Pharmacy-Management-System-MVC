@@ -1,0 +1,42 @@
+﻿<div class="card mb-4">
+    <h5 class="card-header"> Hesap Bilgilerimi Göster </h5>
+    <p class="demo-inline-spacing">
+        <div class="card-body">
+            <a class="btn btn-primary me-1" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"> Göster </a>
+            <div class="collapse" id="collapseExample">
+                <div class="d-grid d-sm-flex p-3 border">
+
+                    <span>
+                        Kullanıcı Adı = @HttpContext.Current.User.Identity.Name
+                    </span>
+
+                </div>
+
+                <div class="d-grid d-sm-flex p-3 border">
+                    <span>
+                        Kullanıcı ID = @ViewBag.ID
+                    </span>
+                </div>
+
+                <div class="d-grid d-sm-flex p-3 border">
+                    <span>
+                        Hesap Adı = @ViewBag.AD
+                    </span>
+                </div>
+
+
+                <div class="d-grid d-sm-flex p-3 border">
+                    <span>
+                        Eczane Telefonu = @ViewBag.TELEFON
+                    </span>
+                </div>
+
+                <div class="d-grid d-sm-flex p-3 border">
+                    <span>
+                        Tescil Numarası = @ViewBag.TESCIL
+                    </span>
+                </div>
+
+            </div>
+        </div>
+</div>

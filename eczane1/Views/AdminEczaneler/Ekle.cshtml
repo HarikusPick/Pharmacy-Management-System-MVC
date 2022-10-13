@@ -1,0 +1,67 @@
+﻿@using eczane1.Models
+@{
+    ViewBag.Title = "Index";
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2">
+                    Eczane Ekle
+                </div>
+                <div class="block-controls">
+                    <a href="/AdminEczaneler/Index"></a>
+                    <span aria-hidden="true" class="icon icon-cross icon-size-medium block-control-remove"></span>
+                    <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+                </div>
+            </div>
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <form action="/AdminEczaneler/Ekle" method="post" role="form">
+                        @if (Model != null)
+                        {
+                            <input type="hidden" name="eczane_id" value="@Model.eczane_id" />
+                        }
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Eczane Adı</label>
+                            @if (Model.eczane_ad == null)
+                            {
+                                <input value="" type="text" class="form-control" placeholder="Eczane Adını Giriniz" name="eczane_ad">
+                            }
+                            else
+                            {
+                                <input value="@Model.eczane_ad" type="text" class="form-control" placeholder="Eczane Adını Giriniz" name="eczane_ad">
+                            }
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Eczane Şifresi</label>
+                            @if (Model.eczane_password == null)
+                            {
+                                <input value="" type="password" class="form-control" placeholder="Eczane Şifresini giriniz" name="eczane_password">
+                            }
+                            else
+                            {
+                                <input value="@Model.eczane_password" type="password" class="form-control" placeholder="Eczane Şifresini giriniz" name="eczane_password">
+                            }
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Telefon</label>
+                            @if (Model.eczane_telefon == null)
+                            {
+                                <input value="" type="text" class="form-control" placeholder="Telefonu Giriniz" name="eczane_telefon">
+                            }
+                            else
+                            {
+                                <input value="@Model.eczane_telefon" type="text" class="form-control" placeholder="Telefonu Giriniz" name="eczane_telefon">
+                            }
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

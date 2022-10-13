@@ -1,0 +1,83 @@
+﻿@model eczane1.Models.CascadingTur
+@{ViewBag.Title = "Index";}
+
+<div class="row">
+    
+        <div class="col-md-12">
+            <div class="block">
+                <div class="block-heading">
+                    <div class="main-text h2">
+                        İlaç Ekle
+                    </div>
+                    <div class="block-controls">
+                        <a href="/Ilaclar/Index"></a>
+                        <span aria-hidden="true" class="icon icon-cross icon-size-medium block-control-remove"></span>
+                        <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+                    </div>
+                </div>
+                <div class="block-content-outer">
+                    <div class="block-content-inner">
+                        <form action="/EczaneIndex/Ekle" method="post" role="form">
+                            <input name="eczane_id" type="hidden" value="@ViewBag.ID"/>
+                            @if (ViewBag.TurListesi != null)
+                            {
+                                @Html.DropDownListFor(m => m.ilac_turu_id, ViewBag.TurListesi as SelectList, "--tur--", new { @class = "form-control" })
+                            }
+                            @Html.DropDownListFor(m => m.ilac_id, new SelectList(""), "--ilaç--", new { @class = "form-control"})
+                            
+                        <input id="ilacInputu" name="mahalle_id" type="hidden" />
+
+                            <button type="submit" class="btn btn-primary">Kaydet</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="~/Content/jquery-1.11.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#ilac_turu_id").change(function () {
+            var turid = $(this).val();
+            $.ajax({
+                type: "post",
+                url: "/EczaneIndex/GetIlacList?ilac_turu_id=" + turid,
+                contentType: "html",
+                success: function (response) {
+                    $("#ilac_id").empty();
+                    $("#ilac_id").append(response);
+                }
+            })
+        })
+        $("#ilac_id").change(function () {
+            var ilac_id = $(this).val();
+            document.getElementById("ilacInputu").innerHTML = ilac_id;
+
+        })
+    })
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,140 @@
+﻿@using eczane1.Models
+@model List<tbl_eczane>
+@{
+    ViewBag.Title = "Eczaneler";
+}
+
+<div class="block-heading">
+    <div class="main-text h2">
+        Eczaneler
+        @HttpContext.Current.User.Identity.Name
+    </div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Eczane ID</th>
+                <th>Eczane KullanıcıAdı</th>
+                <th>Eczane Adı</th>
+                <th>Tescil Numarası</th>
+                <th>Eczane Telefon</th>
+                <th>Mahallesi</th>
+                <th>İlaçları</th>
+                <th>Sil</th>
+                <th>Güncelle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.eczane_id</td>
+                    <td>@item.eczane_nickname</td>
+                    <td>
+                        @item.eczane_ad
+                        <script>
+                        var eczaneAdi = @item.eczane_ad;
+                        </script>
+                    </td>
+                    <td>@item.eczane_tescil</td>
+                    <td>@item.eczane_telefon</td>
+                    @if (item.tbl_mahalle == null)
+                    {
+                        <td></td>
+                    }
+                    else
+                    {
+                        <td>@item.tbl_mahalle.mahalle_ad</td>
+                    } @if (item.tbl_eczane_ilac == null)
+                    {
+                        <td></td>
+                    }
+                    else
+                    {
+                        if (@item.tbl_eczane_ilac.Count() > 0)
+                        {
+                            <td><a class="rounded btn btn-success" href="/AdminEczaneler/Goster/@item.eczane_id">( @item.tbl_eczane_ilac.Count() )Göster </a></td>
+                        }
+                        else
+                        {
+                            <td><button type="button" disabled class="btn btn-warning"> Kayıt Yok </button></td>
+                        }
+
+                    }
+                    <td><button type="button" class="btn btn-danger modal-ac" data-eczID="@item.eczane_id" data-eczNick="@item.eczane_ad" data-EIC="@item.tbl_eczane_ilac.Count()" data-bs-toggle="modal" data-bs-target="#smallModal" aria-controls="offcanvasTop">Sil</button></td>
+                    <td><a href="/AdminEczaneler/Guncelle/@item.eczane_id" class="rounded btn btn-primary "> Güncelle</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="block-controls">
+        <span aria-hidden="true" class="icon icon-cross icon-size-medium block-control-remove"></span>
+        <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+    </div>
+</div>
+<!-- Kayıt Sil Modal -->
+<div class="modal fade" id="smallModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Kayıt Sil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col mb-3">
+                        <p id="soruP"></p>
+                    </div>
+                </div>
+                <div class="row g-2">
+                    <div class="col mb-0">
+                        <p id="silmeHatasi"></p>
+                    </div>
+                    <div class="col mb-0">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">İptal </button>
+                <button type="button" id="eczaneyiSil" class="btn me-2 btn-danger"> Sil</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Kayıt Sil Modal sonu-->
+@section scripts{
+    <script src="~/Content/libs/jquery/jquery.js"></script>
+    <script>
+        $(".modal-ac").click(function () {
+            var eczAdi = $(this).attr("data-eczNick");
+            var eczID = $(this).attr("data-eczID");
+            var ilacCount = $(this).attr("data-EIC");
+            $("#soruP").html(eczAdi + " isimli ilaç kaydı silinsin mi?");
+            $("#eczaneyiSil").attr("eID", eczID);
+            if (ilacCount == 0) {
+                $("#eczaneyiSil").attr("eID", eczID);
+                alert("126");
+            }
+            if (ilacCount > 0) {
+                $("#eczaneyiKesinSil").attr("eID", eczID);
+                alert("130");
+            }
+        });
+        $("#eczaneyiSil").click(function () {
+            var id = $(this).attr("eID");
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "/AdminEczaneler/sil/" + id,
+                    success: function (durum) {
+                        if (durum == "başarılı") {
+                            window.location.replace("/AdminEczaneler/index");
+                        }
+                        else {
+                            $("#silmeHatasi").html("Hata Oluştu" + durum);
+                        }
+                    }
+                });
+        });
+    </script>
+}

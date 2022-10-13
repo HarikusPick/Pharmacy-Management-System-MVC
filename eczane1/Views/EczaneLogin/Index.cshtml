@@ -1,0 +1,146 @@
+﻿@model eczane1.Models.CascadingClass
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/LoginCSS.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main">
+        <div class="container a-container" id="a-container">
+            <form class="form" id="GirisForm" method="post" action="/EczaneLogin/Index/">
+                <h2 class="form_title title">Eczane Giriş Yap</h2>
+                <input name="eczane_nickname" class="form__input" type="text" placeholder="Kullanıcı Adı">
+                <input name="eczane_password" class="form__input" type="password" placeholder="Şifre">
+                <h3>@ViewBag.mesaj</h3>
+                <button type="submit" style="cursor:pointer;" class="form__button button">Eczane Giriş Yap</button>
+                <a  class="button" style="text-decoration: none !important; justify-content:center; align-items:center; display:flex;" href="/Login/Index">Üye Girişi</a>
+            </form>
+            
+        </div>
+        <div class="container b-container" id="b-container">
+            <form role="form" class="form" id="KayitForm" method="post" action="/EczaneLogin/Ekle/">
+                <h4 class="form_title title">Eczane Olarak Sisteme Kayıt Ol</h4>
+                <input id="nick" name="eczane_nickname" class="form__input" required type="text" placeholder="Kullanıcı Adı" onkeyup="checkNickname()">
+                <span id="spanmess"></span>
+                <input name="eczane_password" class="form__input" required type="password" placeholder="Şifre">
+                <input name="eczane_ad" class="form__input" required type="text" placeholder="İsim">
+                <input name="eczane_tescil" class="form__input" required type="number" placeholder="Tescil Numarası">
+                <input name="eczane_telefon" class="form__input" required type="text" placeholder="Telefon">
+                <label for="smallSelect" class="form-label">Adres</label>
+
+                @if (ViewBag.IlListe != null)
+                {
+                    @Html.DropDownListFor(m => m.il_id, ViewBag.IlListe as SelectList, "---- il seç----", new { @class = "form-control" })
+                }
+                @Html.DropDownListFor(m => m.ilce_id, new SelectList(""), "---- ilce seç-----", new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.semt_id, new SelectList(""), "---- semt seç-----", new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.mahalle_id, new SelectList(""), "---- mahalle seç-----", new { @class = "form-control" })
+
+                <script src="~/Content/jquery-1.11.1.min.js"></script>
+                <script>
+                    function checkNickname() {
+                        var nick = $("#nick").val();
+                        $.ajax({
+                            type: "post",
+                            url: "/EczaneLogin/checkUsername",
+                            data: '{username:"' + nick + '"}',
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (result) {
+                                var mess = $("#spanmess");
+                                if (result) {
+                                    mess.html("kullanıcı adı müsait");
+                                    mess.css("color", "green");
+                                }
+                                else {
+                                    mess.html("kullanıcı adı alınmış!");
+                                    mess.css("color", "red");
+                                }
+                            }
+                        })
+                    }
+                </script>
+                <script>
+                    $(document).ready(function () {
+                        $("#il_id").change(function () {
+                            var ilId = $(this).val();
+
+                            $.ajax({
+                                type: "post",
+                                url: "/EczaneLogin/GetIlceList?il_id=" + ilId,
+                                contentType: "html",
+                                success: function (response) {
+                                    $("#ilce_id").empty();
+                                    $("#ilce_id").append(response);
+                                }
+                            })
+                        })
+
+                        $("#ilce_id").change(function () {
+                            var ilceId = $(this).val();
+
+                            $.ajax({
+                                type: "post",
+                                url: "/EczaneLogin/GetSemtList?ilce_id=" + ilceId,
+                                contentType: "html",
+                                success: function (response) {
+                                    $("#semt_id").empty();
+                                    $("#semt_id").append(response);
+                                }
+                            })
+                        })
+
+                        $("#semt_id").change(function () {
+                            var semtId = $(this).val();
+
+                            $.ajax({
+                                type: "post",
+                                url: "/EczaneLogin/GetMahalleList?semt_id=" + semtId,
+                                contentType: "html",
+                                success: function (response) {
+                                    $("#mahalle_id").empty();
+                                    $("#mahalle_id").append(response);
+                                }
+                            })
+                        })
+
+                        $("#mahalle_id").change(function () {
+                            var mahalleId = $(this).val();
+                            document.getElementById("mahalleInputu").innerHTML = mahalleId;
+
+                        })
+                    })
+                </script>
+
+
+
+                <input id="mahalleInputu" name="mahalle_id" type="hidden" />
+                <input name="rol_id" type="hidden" value="1">
+                <button type="submit" class="switch__button button switch-btn">Eczane Kayıt Ol</button>
+            </form>
+        </div>
+        <div class="switch" id="switch-cnt">
+            <div class="switch__circle"></div>
+            <div class="switch__circle switch__circle--t"></div>
+            <div class="switch__container" id="switch-c1">
+                <h3 class="switch__title title">Eczane Hesabınız Yok Mu?</h3>
+                <p class="switch__description description">Eczane Olarak Kayıt Olmak İstiyorum! </p>
+                <button class="switch__button button switch-btn">Kayıt Ol</button>
+            </div>
+            <div class="switch__container is-hidden" id="switch-c2">
+                <h2 class="switch__title title">Tekrardan Hoşgeldiniz!</h2>
+                <p class="switch__description description">Eczane Hesabım Var</p>
+                <button class="switch__button button switch-btn">Eczane Olarak Giriş Yap</button>
+            </div>
+        </div>
+        
+    </div>
+    <script src="~/Content/Login/LoginJS.js"></script>
+</body>
+</html>

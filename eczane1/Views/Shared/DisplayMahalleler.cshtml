@@ -1,0 +1,11 @@
+﻿@model eczane1.Models.tbl_mahalle
+
+<option value="">--mahalle seçin--</option>
+
+@if (ViewBag.mahalleList != null)
+{
+    foreach (var item in ViewBag.mahalleList)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}

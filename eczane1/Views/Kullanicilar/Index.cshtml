@@ -1,0 +1,74 @@
+﻿@model eczane1.Models.CascadingClass2
+
+<h2>Adrese Göre Eczane Arama Sihirbazı</h2><br />
+<a class="btn btn-primary" style="color:white;" href="/Login" >Giriş Yapmak İçin Tıklayınız</a>
+<form role="form" class="form" id="KayitForm" method="post" action="/Kullanicilar/AdreseGoreEczane">
+    <span id="spanmess"></span>
+
+    <label for="smallSelect" class="form-label">Adres</label>
+
+    @if (ViewBag.IlListe != null)
+    {
+        @Html.DropDownListFor(m => m.il_id, ViewBag.IlListe as SelectList, "---- il seç----", new { @class = "form-control" })
+    }
+    @Html.DropDownListFor(m => m.ilce_id, new SelectList(""), "---- ilce seç-----", new { @class = "form-control" })
+    @Html.DropDownListFor(m => m.semt_id, new SelectList(""), "---- semt seç-----", new { @class = "form-control" })
+    @Html.DropDownListFor(m => m.mahalle_id, new SelectList(""), "---- mahalle seç-----", new { @class = "form-control" })
+
+    <script src="~/Content/jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#il_id").change(function () {
+                var ilId = $(this).val();
+
+                $.ajax({
+                    type: "post",
+                    url: "/EczaneLogin/GetIlceList?il_id=" + ilId,
+                    contentType: "html",
+                    success: function (response) {
+                        $("#ilce_id").empty();
+                        $("#ilce_id").append(response);
+                    }
+                })
+            })
+
+            $("#ilce_id").change(function () {
+                var ilceId = $(this).val();
+
+                $.ajax({
+                    type: "post",
+                    url: "/EczaneLogin/GetSemtList?ilce_id=" + ilceId,
+                    contentType: "html",
+                    success: function (response) {
+                        $("#semt_id").empty();
+                        $("#semt_id").append(response);
+                    }
+                })
+            })
+
+            $("#semt_id").change(function () {
+                var semtId = $(this).val();
+
+                $.ajax({
+                    type: "post",
+                    url: "/EczaneLogin/GetMahalleList?semt_id=" + semtId,
+                    contentType: "html",
+                    success: function (response) {
+                        $("#mahalle_id").empty();
+                        $("#mahalle_id").append(response);
+                    }
+                })
+            })
+
+            $("#mahalle_id").change(function () {
+                var mahalleId = $(this).val();
+                document.getElementById("mahalleInputu").innerHTML = mahalleId;
+
+            })
+        })
+    </script>
+
+    <input type="hidden" id="mahalleInputu" name="mahalle_id"/>
+    <button type="submit" class="btn btn-primary">Ara</button>
+</form>
+<script src="~/Content/Login/LoginJS.js"></script>

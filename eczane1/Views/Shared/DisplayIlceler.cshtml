@@ -1,0 +1,11 @@
+﻿@model eczane1.Models.tbl_ilce
+
+<option value="">-- İlçe Seçiniz --</option>
+
+@if(ViewBag.ilceList != null)
+{
+    foreach (var item in ViewBag.ilceList)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+}

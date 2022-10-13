@@ -1,0 +1,791 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C1B192DE-165A-45B4-B760-6092B7F5C2DE}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>eczane1</RootNamespace>
+    <AssemblyName>eczane1</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44303</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\assets\css\demo.css" />
+    <Content Include="Content\assets\img\avatars\1.png" />
+    <Content Include="Content\assets\img\avatars\5.png" />
+    <Content Include="Content\assets\img\avatars\6.png" />
+    <Content Include="Content\assets\img\avatars\7.png" />
+    <Content Include="Content\assets\img\backgrounds\18.jpg" />
+    <Content Include="Content\assets\img\elements\1.jpg" />
+    <Content Include="Content\assets\img\elements\11.jpg" />
+    <Content Include="Content\assets\img\elements\12.jpg" />
+    <Content Include="Content\assets\img\elements\13.jpg" />
+    <Content Include="Content\assets\img\elements\17.jpg" />
+    <Content Include="Content\assets\img\elements\18.jpg" />
+    <Content Include="Content\assets\img\elements\19.jpg" />
+    <Content Include="Content\assets\img\elements\2.jpg" />
+    <Content Include="Content\assets\img\elements\20.jpg" />
+    <Content Include="Content\assets\img\elements\3.jpg" />
+    <Content Include="Content\assets\img\elements\4.jpg" />
+    <Content Include="Content\assets\img\elements\5.jpg" />
+    <Content Include="Content\assets\img\elements\7.jpg" />
+    <Content Include="Content\assets\img\favicon\favicon.ico" />
+    <Content Include="Content\assets\img\icons\brands\asana.png" />
+    <Content Include="Content\assets\img\icons\brands\behance.png" />
+    <Content Include="Content\assets\img\icons\brands\dribbble.png" />
+    <Content Include="Content\assets\img\icons\brands\facebook.png" />
+    <Content Include="Content\assets\img\icons\brands\github.png" />
+    <Content Include="Content\assets\img\icons\brands\google.png" />
+    <Content Include="Content\assets\img\icons\brands\instagram.png" />
+    <Content Include="Content\assets\img\icons\brands\mailchimp.png" />
+    <Content Include="Content\assets\img\icons\brands\slack.png" />
+    <Content Include="Content\assets\img\icons\brands\twitter.png" />
+    <Content Include="Content\assets\img\icons\unicons\cc-primary.png" />
+    <Content Include="Content\assets\img\icons\unicons\cc-success.png" />
+    <Content Include="Content\assets\img\icons\unicons\cc-warning.png" />
+    <Content Include="Content\assets\img\icons\unicons\chart-success.png" />
+    <Content Include="Content\assets\img\icons\unicons\chart.png" />
+    <Content Include="Content\assets\img\icons\unicons\paypal.png" />
+    <Content Include="Content\assets\img\icons\unicons\wallet-info.png" />
+    <Content Include="Content\assets\img\icons\unicons\wallet.png" />
+    <Content Include="Content\assets\img\illustrations\girl-doing-yoga-light.png" />
+    <Content Include="Content\assets\img\illustrations\man-with-laptop-light.png" />
+    <Content Include="Content\assets\img\illustrations\page-misc-error-light.png" />
+    <Content Include="Content\assets\img\layouts\layout-container-light.png" />
+    <Content Include="Content\assets\img\layouts\layout-fluid-light.png" />
+    <Content Include="Content\assets\img\layouts\layout-without-menu-light.png" />
+    <Content Include="Content\assets\img\layouts\layout-without-navbar-light.png" />
+    <Content Include="Content\assets\js\config.js" />
+    <Content Include="Content\assets\js\dashboards-analytics.js" />
+    <Content Include="Content\assets\js\extended-ui-perfect-scrollbar.js" />
+    <Content Include="Content\assets\js\form-basic-inputs.js" />
+    <Content Include="Content\assets\js\main.js" />
+    <Content Include="Content\assets\js\pages-account-settings-account.js" />
+    <Content Include="Content\assets\js\ui-modals.js" />
+    <Content Include="Content\assets\js\ui-popover.js" />
+    <Content Include="Content\assets\js\ui-toasts.js" />
+    <Content Include="Content\assets\vendor\css\core.css" />
+    <Content Include="Content\assets\vendor\css\pages\page-account-settings.css" />
+    <Content Include="Content\assets\vendor\css\pages\page-auth.css" />
+    <Content Include="Content\assets\vendor\css\pages\page-icons.css" />
+    <Content Include="Content\assets\vendor\css\pages\page-misc.css" />
+    <Content Include="Content\assets\vendor\css\theme-default.css" />
+    <Content Include="Content\assets\vendor\fonts\boxicons.css" />
+    <Content Include="Content\assets\vendor\fonts\boxicons\boxicons.svg" />
+    <Content Include="Content\assets\vendor\js\bootstrap.js" />
+    <Content Include="Content\assets\vendor\js\helpers.js" />
+    <Content Include="Content\assets\vendor\js\menu.js" />
+    <Content Include="Content\assets\vendor\libs\apex-charts\apex-charts.css" />
+    <Content Include="Content\assets\vendor\libs\apex-charts\apexcharts.js" />
+    <Content Include="Content\assets\vendor\libs\highlight\highlight-github.css" />
+    <Content Include="Content\assets\vendor\libs\highlight\highlight.css" />
+    <Content Include="Content\assets\vendor\libs\highlight\highlight.js" />
+    <Content Include="Content\assets\vendor\libs\jquery\jquery.js" />
+    <Content Include="Content\assets\vendor\libs\masonry\masonry.js" />
+    <Content Include="Content\assets\vendor\libs\perfect-scrollbar\perfect-scrollbar.css" />
+    <Content Include="Content\assets\vendor\libs\perfect-scrollbar\perfect-scrollbar.js" />
+    <Content Include="Content\assets\vendor\libs\popper\popper.js" />
+    <Content Include="Content\jquery-1.11.1.min.js" />
+    <Content Include="Content\js\bootstrap.js" />
+    <Content Include="Content\js\helpers.js" />
+    <Content Include="Content\js\menu.js" />
+    <Content Include="Content\libs\apex-charts\apexcharts.js" />
+    <Content Include="Content\libs\highlight\highlight.js" />
+    <Content Include="Content\libs\jquery\jquery.js" />
+    <Content Include="Content\libs\masonry\masonry.js" />
+    <Content Include="Content\libs\perfect-scrollbar\perfect-scrollbar.js" />
+    <Content Include="Content\libs\popper\popper.js" />
+    <Content Include="Content\Login\.idea\modules.xml" />
+    <Content Include="Content\Login\.idea\workspace.xml" />
+    <Content Include="Content\Login\Login.html" />
+    <Content Include="Content\Login\LoginCSS.css" />
+    <Content Include="Content\Login\LoginJS.js" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\sneat-1.0.0\assets\css\demo.css" />
+    <Content Include="Content\sneat-1.0.0\assets\img\avatars\1.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\avatars\5.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\avatars\6.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\avatars\7.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\backgrounds\18.jpg" />
+    <Content Include="Content\sneat-1.0.0\assets\img\elements\1.jpg" />
+    <Content Include="Content\sneat-1.0.0\assets\img\elements\11.jpg" />
+    <Content Include="Content\sneat-1.0.0\assets\img\elements\12.jpg" />
+    <Content Include="Content\sneat-1.0.0\assets\img\elements\13.jpg" />
+    <Content Include="Content\sneat-1.0.0\assets\img\elements\17.jpg" />
+    <Content Include="Content\sneat-1.0.0\assets\img\elements\18.jpg" />
+    <Content Include="Content\sneat-1.0.0\assets\img\elements\19.jpg" />
+    <Content Include="Content\sneat-1.0.0\assets\img\elements\2.jpg" />
+    <Content Include="Content\sneat-1.0.0\assets\img\elements\20.jpg" />
+    <Content Include="Content\sneat-1.0.0\assets\img\elements\3.jpg" />
+    <Content Include="Content\sneat-1.0.0\assets\img\elements\4.jpg" />
+    <Content Include="Content\sneat-1.0.0\assets\img\elements\5.jpg" />
+    <Content Include="Content\sneat-1.0.0\assets\img\elements\7.jpg" />
+    <Content Include="Content\sneat-1.0.0\assets\img\favicon\favicon.ico" />
+    <Content Include="Content\sneat-1.0.0\assets\img\icons\brands\asana.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\icons\brands\behance.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\icons\brands\dribbble.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\icons\brands\facebook.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\icons\brands\github.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\icons\brands\google.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\icons\brands\instagram.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\icons\brands\mailchimp.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\icons\brands\slack.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\icons\brands\twitter.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\icons\unicons\cc-primary.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\icons\unicons\cc-success.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\icons\unicons\cc-warning.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\icons\unicons\chart-success.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\icons\unicons\chart.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\icons\unicons\paypal.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\icons\unicons\wallet-info.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\icons\unicons\wallet.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\illustrations\girl-doing-yoga-light.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\illustrations\man-with-laptop-light.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\illustrations\page-misc-error-light.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\layouts\layout-container-light.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\layouts\layout-fluid-light.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\layouts\layout-without-menu-light.png" />
+    <Content Include="Content\sneat-1.0.0\assets\img\layouts\layout-without-navbar-light.png" />
+    <Content Include="Content\sneat-1.0.0\assets\js\config.js" />
+    <Content Include="Content\sneat-1.0.0\assets\js\dashboards-analytics.js" />
+    <Content Include="Content\sneat-1.0.0\assets\js\extended-ui-perfect-scrollbar.js" />
+    <Content Include="Content\sneat-1.0.0\assets\js\form-basic-inputs.js" />
+    <Content Include="Content\sneat-1.0.0\assets\js\main.js" />
+    <Content Include="Content\sneat-1.0.0\assets\js\pages-account-settings-account.js" />
+    <Content Include="Content\sneat-1.0.0\assets\js\ui-modals.js" />
+    <Content Include="Content\sneat-1.0.0\assets\js\ui-popover.js" />
+    <Content Include="Content\sneat-1.0.0\assets\js\ui-toasts.js" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\css\core.css" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\css\pages\page-account-settings.css" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\css\pages\page-auth.css" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\css\pages\page-icons.css" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\css\pages\page-misc.css" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\css\theme-default.css" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\fonts\boxicons.css" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\fonts\boxicons\boxicons.svg" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\js\bootstrap.js" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\js\helpers.js" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\js\menu.js" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\libs\apex-charts\apex-charts.css" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\libs\apex-charts\apexcharts.js" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\libs\highlight\highlight-github.css" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\libs\highlight\highlight.css" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\libs\highlight\highlight.js" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\libs\jquery\jquery.js" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\libs\masonry\masonry.js" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\libs\perfect-scrollbar\perfect-scrollbar.css" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\libs\perfect-scrollbar\perfect-scrollbar.js" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\libs\popper\popper.js" />
+    <Content Include="Content\sneat-1.0.0\build-config.js" />
+    <Content Include="Content\sneat-1.0.0\documentation.html" />
+    <Content Include="Content\sneat-1.0.0\gulpfile.js" />
+    <Content Include="Content\sneat-1.0.0\html\auth-forgot-password-basic.html" />
+    <Content Include="Content\sneat-1.0.0\html\auth-login-basic.html" />
+    <Content Include="Content\sneat-1.0.0\html\auth-register-basic.html" />
+    <Content Include="Content\sneat-1.0.0\html\cards-basic.html" />
+    <Content Include="Content\sneat-1.0.0\html\extended-ui-perfect-scrollbar.html" />
+    <Content Include="Content\sneat-1.0.0\html\extended-ui-text-divider.html" />
+    <Content Include="Content\sneat-1.0.0\html\form-layouts-horizontal.html" />
+    <Content Include="Content\sneat-1.0.0\html\form-layouts-vertical.html" />
+    <Content Include="Content\sneat-1.0.0\html\forms-basic-inputs.html" />
+    <Content Include="Content\sneat-1.0.0\html\forms-input-groups.html" />
+    <Content Include="Content\sneat-1.0.0\html\icons-boxicons.html" />
+    <Content Include="Content\sneat-1.0.0\html\index.html" />
+    <Content Include="Content\sneat-1.0.0\html\layouts-blank.html" />
+    <Content Include="Content\sneat-1.0.0\html\layouts-container.html" />
+    <Content Include="Content\sneat-1.0.0\html\layouts-fluid.html" />
+    <Content Include="Content\sneat-1.0.0\html\layouts-without-menu.html" />
+    <Content Include="Content\sneat-1.0.0\html\layouts-without-navbar.html" />
+    <Content Include="Content\sneat-1.0.0\html\pages-account-settings-account.html" />
+    <Content Include="Content\sneat-1.0.0\html\pages-account-settings-connections.html" />
+    <Content Include="Content\sneat-1.0.0\html\pages-account-settings-notifications.html" />
+    <Content Include="Content\sneat-1.0.0\html\pages-misc-error.html" />
+    <Content Include="Content\sneat-1.0.0\html\pages-misc-under-maintenance.html" />
+    <Content Include="Content\sneat-1.0.0\html\tables-basic.html" />
+    <Content Include="Content\sneat-1.0.0\html\ui-accordion.html" />
+    <Content Include="Content\sneat-1.0.0\html\ui-alerts.html" />
+    <Content Include="Content\sneat-1.0.0\html\ui-badges.html" />
+    <Content Include="Content\sneat-1.0.0\html\ui-buttons.html" />
+    <Content Include="Content\sneat-1.0.0\html\ui-carousel.html" />
+    <Content Include="Content\sneat-1.0.0\html\ui-collapse.html" />
+    <Content Include="Content\sneat-1.0.0\html\ui-dropdowns.html" />
+    <Content Include="Content\sneat-1.0.0\html\ui-footer.html" />
+    <Content Include="Content\sneat-1.0.0\html\ui-list-groups.html" />
+    <Content Include="Content\sneat-1.0.0\html\ui-modals.html" />
+    <Content Include="Content\sneat-1.0.0\html\ui-navbar.html" />
+    <Content Include="Content\sneat-1.0.0\html\ui-offcanvas.html" />
+    <Content Include="Content\sneat-1.0.0\html\ui-pagination-breadcrumbs.html" />
+    <Content Include="Content\sneat-1.0.0\html\ui-progress.html" />
+    <Content Include="Content\sneat-1.0.0\html\ui-spinners.html" />
+    <Content Include="Content\sneat-1.0.0\html\ui-tabs-pills.html" />
+    <Content Include="Content\sneat-1.0.0\html\ui-toasts.html" />
+    <Content Include="Content\sneat-1.0.0\html\ui-tooltips-popovers.html" />
+    <Content Include="Content\sneat-1.0.0\html\ui-typography.html" />
+    <Content Include="Content\sneat-1.0.0\index.html" />
+    <Content Include="Content\sneat-1.0.0\js\bootstrap.js" />
+    <Content Include="Content\sneat-1.0.0\js\helpers.js" />
+    <Content Include="Content\sneat-1.0.0\js\menu.js" />
+    <Content Include="Content\sneat-1.0.0\libs\apex-charts\apexcharts.js" />
+    <Content Include="Content\sneat-1.0.0\libs\highlight\highlight.js" />
+    <Content Include="Content\sneat-1.0.0\libs\jquery\jquery.js" />
+    <Content Include="Content\sneat-1.0.0\libs\masonry\masonry.js" />
+    <Content Include="Content\sneat-1.0.0\libs\perfect-scrollbar\perfect-scrollbar.js" />
+    <Content Include="Content\sneat-1.0.0\libs\popper\popper.js" />
+    <Content Include="Content\sneat-1.0.0\tasks\build.js" />
+    <Content Include="Content\sneat-1.0.0\tasks\prod.js" />
+    <Content Include="Content\sneat-1.0.0\webpack.config.js" />
+    <Content Include="Content\tasks\build.js" />
+    <Content Include="Content\tasks\prod.js" />
+    <Content Include="Global.asax" />
+    <Content Include="Models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model2.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model2.edmx</DependentUpon>
+      <LastGenOutput>Model2.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model2.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model2.edmx</DependentUpon>
+      <LastGenOutput>Model2.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model3.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model3.Context.cs</LastGenOutput>
+      <DependentUpon>Model3.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Model3.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model3.cs</LastGenOutput>
+      <DependentUpon>Model3.edmx</DependentUpon>
+    </Content>
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminEczanelerController.cs" />
+    <Compile Include="Controllers\AdminIndexController.cs" />
+    <Compile Include="Controllers\AdminLoginController.cs" />
+    <Compile Include="Controllers\EczaneIndexController.cs" />
+    <Compile Include="Controllers\EczaneLoginController.cs" />
+    <Compile Include="Controllers\HesapController.cs" />
+    <Compile Include="Controllers\IlaclarController.cs" />
+    <Compile Include="Controllers\KullanicilarController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CascadingClass.cs" />
+    <Compile Include="Models\CascadingClass2.cs" />
+    <Compile Include="Models\CascadingTur.cs" />
+    <Compile Include="Models\Ilceler.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Iller.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\il_ilce_Result.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\il_ilce_semt_mahalle_Result.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\il_ilce_semt_Result.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JoinClass.cs" />
+    <Compile Include="Models\mahalle_kodu_tam_adres_Result.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model2.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model2.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model2.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model3.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model3.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model3.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_admin.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_eczane.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_eczane_ilac.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_il.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_ilac.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_ilac_turu.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_ilce.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_kullanici.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_mahalle.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_rol.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_semt.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\MyAuthorization.cs" />
+    <Compile Include="Security\MyRoles.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Content\Login\.idea\.gitignore" />
+    <Content Include="Content\Login\.idea\untitled.iml" />
+    <Content Include="Content\sneat-1.0.0\.browserslistrc" />
+    <Content Include="Content\sneat-1.0.0\.eslintignore" />
+    <Content Include="Content\sneat-1.0.0\.eslintrc.json" />
+    <Content Include="Content\sneat-1.0.0\.github\workflows\handle-new-issue-comment.yml" />
+    <Content Include="Content\sneat-1.0.0\.github\workflows\handle-new-issue.yml" />
+    <Content Include="Content\sneat-1.0.0\.github\workflows\issue-staler.yml" />
+    <Content Include="Content\sneat-1.0.0\.gitignore" />
+    <Content Include="Content\sneat-1.0.0\.prettierignore" />
+    <Content Include="Content\sneat-1.0.0\.prettierrc.json" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\fonts\boxicons\boxicons.eot" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\fonts\boxicons\boxicons.ttf" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\fonts\boxicons\boxicons.woff" />
+    <Content Include="Content\sneat-1.0.0\assets\vendor\fonts\boxicons\boxicons.woff2" />
+    <Content Include="Content\sneat-1.0.0\CHANGELOG.md" />
+    <Content Include="Content\sneat-1.0.0\fonts\boxicons.scss" />
+    <Content Include="Content\sneat-1.0.0\libs\apex-charts\apex-charts.scss" />
+    <Content Include="Content\sneat-1.0.0\libs\highlight\highlight-github.scss" />
+    <Content Include="Content\sneat-1.0.0\libs\highlight\highlight.scss" />
+    <Content Include="Content\sneat-1.0.0\libs\perfect-scrollbar\perfect-scrollbar.scss" />
+    <Content Include="Content\sneat-1.0.0\LICENSE.md" />
+    <Content Include="Content\sneat-1.0.0\package-lock.json" />
+    <Content Include="Content\sneat-1.0.0\package.json" />
+    <Content Include="Content\sneat-1.0.0\README.md" />
+    <Content Include="Content\sneat-1.0.0\scss\core.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\pages\page-account-settings.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\pages\page-auth.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\pages\page-icons.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\pages\page-misc.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\theme-default.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\forms\_floating-labels.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\forms\_form-control.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\forms\_form-range.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\forms\_form-select.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\forms\_input-group.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\forms\_labels.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\forms\_validation.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\mixins\_alert.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\mixins\_badge.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\mixins\_buttons.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\mixins\_caret.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\mixins\_dropdown.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\mixins\_forms.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\mixins\_list-group.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\mixins\_misc.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\mixins\_navs.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\mixins\_pagination.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\mixins\_progress.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\mixins\_table-variants.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\mixins\_toasts.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_accordion.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_alert.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_badge.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_breadcrumb.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_button-group.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_buttons.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_card.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_carousel.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_close.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_dropdown.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_forms.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_functions.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_include.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_list-group.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_mixins.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_modal.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_nav.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_navbar.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_offcanvas.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_pagination.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_popover.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_progress.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_reboot.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_root.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_spinners.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_tables.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_toasts.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_tooltip.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_type.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_utilities-ltr.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_utilities.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap-extended\_variables.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_bootstrap.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_colors.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_components.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_components\mixins\_app-brand.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_components\mixins\_avatar.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_components\mixins\_footer.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_components\mixins\_menu.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_components\mixins\_misc.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_components\mixins\_navbar.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_components\mixins\_text-divider.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_components\_app-brand.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_components\_avatar.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_components\_base.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_components\_common.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_components\_footer.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_components\_include.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_components\_layout.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_components\_menu.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_components\_mixins.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_components\_text-divider.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_components\_variables.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_custom-variables\_bootstrap-extended.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_custom-variables\_components.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_custom-variables\_libs.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_custom-variables\_pages.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_custom-variables\_support.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_theme\_common.scss" />
+    <Content Include="Content\sneat-1.0.0\scss\_theme\_theme.scss" />
+    <Content Include="Content\sneat-1.0.0\yarn.lock" />
+    <Content Include="Content\assets\vendor\fonts\boxicons\boxicons.eot" />
+    <Content Include="Content\assets\vendor\fonts\boxicons\boxicons.ttf" />
+    <Content Include="Content\assets\vendor\fonts\boxicons\boxicons.woff" />
+    <Content Include="Content\assets\vendor\fonts\boxicons\boxicons.woff2" />
+    <Content Include="Content\fonts\boxicons.scss" />
+    <Content Include="Content\libs\apex-charts\apex-charts.scss" />
+    <Content Include="Content\libs\highlight\highlight-github.scss" />
+    <Content Include="Content\libs\highlight\highlight.scss" />
+    <Content Include="Content\libs\perfect-scrollbar\perfect-scrollbar.scss" />
+    <Content Include="Content\scss\core.scss" />
+    <Content Include="Content\scss\pages\page-account-settings.scss" />
+    <Content Include="Content\scss\pages\page-auth.scss" />
+    <Content Include="Content\scss\pages\page-icons.scss" />
+    <Content Include="Content\scss\pages\page-misc.scss" />
+    <Content Include="Content\scss\theme-default.scss" />
+    <Content Include="Content\scss\_bootstrap-extended.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\forms\_floating-labels.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\forms\_form-control.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\forms\_form-range.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\forms\_form-select.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\forms\_input-group.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\forms\_labels.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\forms\_validation.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\mixins\_alert.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\mixins\_badge.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\mixins\_buttons.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\mixins\_caret.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\mixins\_dropdown.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\mixins\_forms.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\mixins\_list-group.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\mixins\_misc.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\mixins\_navs.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\mixins\_pagination.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\mixins\_progress.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\mixins\_table-variants.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\mixins\_toasts.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_accordion.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_alert.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_badge.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_breadcrumb.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_button-group.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_buttons.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_card.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_carousel.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_close.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_dropdown.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_forms.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_functions.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_include.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_list-group.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_mixins.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_modal.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_nav.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_navbar.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_offcanvas.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_pagination.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_popover.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_progress.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_reboot.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_root.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_spinners.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_tables.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_toasts.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_tooltip.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_type.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_utilities-ltr.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_utilities.scss" />
+    <Content Include="Content\scss\_bootstrap-extended\_variables.scss" />
+    <Content Include="Content\scss\_bootstrap.scss" />
+    <Content Include="Content\scss\_colors.scss" />
+    <Content Include="Content\scss\_components.scss" />
+    <Content Include="Content\scss\_components\mixins\_app-brand.scss" />
+    <Content Include="Content\scss\_components\mixins\_avatar.scss" />
+    <Content Include="Content\scss\_components\mixins\_footer.scss" />
+    <Content Include="Content\scss\_components\mixins\_menu.scss" />
+    <Content Include="Content\scss\_components\mixins\_misc.scss" />
+    <Content Include="Content\scss\_components\mixins\_navbar.scss" />
+    <Content Include="Content\scss\_components\mixins\_text-divider.scss" />
+    <Content Include="Content\scss\_components\_app-brand.scss" />
+    <Content Include="Content\scss\_components\_avatar.scss" />
+    <Content Include="Content\scss\_components\_base.scss" />
+    <Content Include="Content\scss\_components\_common.scss" />
+    <Content Include="Content\scss\_components\_footer.scss" />
+    <Content Include="Content\scss\_components\_include.scss" />
+    <Content Include="Content\scss\_components\_layout.scss" />
+    <Content Include="Content\scss\_components\_menu.scss" />
+    <Content Include="Content\scss\_components\_mixins.scss" />
+    <Content Include="Content\scss\_components\_text-divider.scss" />
+    <Content Include="Content\scss\_components\_variables.scss" />
+    <Content Include="Content\scss\_custom-variables\_bootstrap-extended.scss" />
+    <Content Include="Content\scss\_custom-variables\_components.scss" />
+    <Content Include="Content\scss\_custom-variables\_libs.scss" />
+    <Content Include="Content\scss\_custom-variables\_pages.scss" />
+    <Content Include="Content\scss\_custom-variables\_support.scss" />
+    <Content Include="Content\scss\_theme\_common.scss" />
+    <Content Include="Content\scss\_theme\_theme.scss" />
+    <EntityDeploy Include="Models\Model2.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model2.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model2.edmx.diagram">
+      <DependentUpon>Model2.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\Model3.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model3.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model3.edmx.diagram">
+      <DependentUpon>Model3.edmx</DependentUpon>
+    </Content>
+    <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Ilaclar\Index.cshtml" />
+    <Content Include="Views\Ilaclar\Ekle.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\EczaneLogin\Index.cshtml" />
+    <Content Include="Views\Shared\DisplayIlceler.cshtml" />
+    <Content Include="Views\Shared\DisplaySemtler.cshtml" />
+    <Content Include="Views\Shared\DisplayMahalleler.cshtml" />
+    <Content Include="Views\AdminIndex\Index.cshtml" />
+    <Content Include="Views\AdminLogin\Index.cshtml" />
+    <Content Include="Views\AdminEczaneler\Index.cshtml" />
+    <Content Include="Views\AdminEczaneler\Ekle.cshtml" />
+    <Content Include="Views\AdminEczaneler\Goster.cshtml" />
+    <Content Include="Views\Hesap\Index.cshtml" />
+    <Content Include="Views\Hesap\Detay.cshtml" />
+    <Content Include="Views\Login\Hata.cshtml" />
+    <Content Include="Views\EczaneIndex\Envanter.cshtml" />
+    <Content Include="Views\EczaneIndex\Ekle.cshtml" />
+    <Content Include="Views\EczaneIndex\Index.cshtml" />
+    <Content Include="Views\Shared\DisplayIlaclar.cshtml" />
+    <Content Include="Views\AdminIndex\Adminler.cshtml" />
+    <Content Include="Views\AdminIndex\Kullanicilar.cshtml" />
+    <Content Include="Views\Kullanicilar\Index.cshtml" />
+    <Content Include="Views\Shared\DisplayEczaneler.cshtml" />
+    <Content Include="Views\Ilaclar\Turler.cshtml" />
+    <Content Include="Views\Ilaclar\TurEkle.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53530</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44303/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

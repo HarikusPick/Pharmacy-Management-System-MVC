@@ -1,0 +1,11 @@
+﻿@model eczane1.Models.tbl_ilac
+
+<option value="">-- ilaç seçin --</option>
+
+@if(ViewBag.IlacList != null)
+            {
+                foreach(var item in ViewBag.IlacList)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            }

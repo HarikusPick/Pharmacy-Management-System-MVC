@@ -1,0 +1,182 @@
+﻿@using eczane1.Models
+@model eczane1.Models.CascadingClass2
+
+@{
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en"
+      class="light-style layout-menu-fixed"
+      dir="ltr"
+      data-theme="theme-default"
+      data-assets-path="../assets/"
+      data-template="vertical-menu-template-free">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>Eczane Yönetim</title>
+    <meta name="description" content="" />
+    <link rel="icon" type="image/x-icon" href="~/Content/assets/img/favicon/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/assets/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="~/Content/assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="~/Content/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="~/Content/assets/css/demo.css" />
+    <link rel="stylesheet" href="~/Content/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="~/Content/assets/vendor/libs/apex-charts/apex-charts.css" />
+    <script src="~/Content/assets/vendor/js/helpers.js"></script>
+    <script src="~/Content/assets/js/config.js"></script>
+</head>
+<body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar layout-without-menu">
+        <div class="layout-container">
+            <!-- Layout container -->
+            <div class="layout-page">
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+                    <!-- Content -->
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <!-- Layout Demo -->
+                        <div class="layout-demo-wrapper">
+                            <div class="layout-demo-info">
+                                <h4>Arama Sonucu</h4>
+                                <button class="btn btn-primary" type="button" onclick="history.back()"> Geri Git</button>
+                            </div>
+                        </div>
+                        <h3>adet eczane bulundu</h3>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Eczane Ad</th>
+                                    <th>İlaç Adedi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    if (ViewBag.eczaneList != null)
+                                    {
+                                        foreach (var item in ViewBag.eczaneList as List<tbl_eczane>)
+                                        {
+                                            <tr>
+                                                <td>@item.eczane_ad</td>
+                                                <td>
+                                                    @{
+                                                        if (item.tbl_eczane_ilac.Count() != 0)
+                                                        {
+                                                            <span>@item.tbl_eczane_ilac.Count()</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span>İlaç Kaydı Yok!</span>
+                                                        }
+                                                    }
+                                                </td>
+                                                @{
+                                                    string s="";
+                                                    string t="";
+                                                    string r="";
+                                                    foreach (var item2 in item.tbl_eczane_ilac)
+                                                    {
+
+                                                        s += item2.tbl_ilac.ilac_ad;
+                                                        t += item2.tbl_ilac.ilac_fiyat;
+                                                        r += item2.tbl_ilac.ilac_skt+"<br/>";
+                                                    }/*foreach*/
+                                                }
+                                                <td>
+                                                    @{
+                                                        if (item.tbl_eczane_ilac.Count() != 0)
+                                                        {
+
+                                                            <button id="@item.eczane_id" type="button" class="btn btn-primary btnsil" data-eczID="@item.eczane_id" data-ilac="@s" data-ilac1="@t" data-ilac2="@r" data-eczNick="@item.eczane_ad" data-bs-toggle="modal" data-bs-target="#exLargeModal" onclick="fonksiyon(@item.eczane_id)"> @item.eczane_ad İlaçları Göster </button>
+
+                                                        }
+                                                    }
+                                                </td>
+                                            </tr>
+                                            <div class="modal fade" id="exLargeModal" tabindex="-1" aria-hidden="true">
+                                                <div class="modal-dialog modal-xl" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel2"></h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Adı</p>
+                                                            <p id="soruP2"></p>
+
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"> Kapat </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        }/*foreach*/
+                                    }/*if*/
+                                } @*script*@
+                            </tbody>
+                        </table>
+                        <script src="~/Content/libs/jquery/jquery.js"></script>
+                        <script>
+                            function fonksiyon(ID) {
+                                alert(ID);
+                                var element = document.getElementById(ID);
+                                
+                                var eczaneAdi = element.getAttribute('data-eczNick');
+                                
+                                var eczaneEnvanteri = element.getAttribute('data-ilac');
+                                var eczaneEnvanteri1 = element.getAttribute('data-ilac1');
+                                var eczaneEnvanteri2 = element.getAttribute('data-ilac2');
+                               
+                                document.getElementById("exampleModalLabel2").innerHTML = eczaneAdi + " İlaçları";
+                                document.getElementById("soruP2").innerHTML = eczaneEnvanteri + eczaneEnvanteri1 + eczaneEnvanteri2;
+                            }
+                        </script>
+                    </div>
+                    <footer class="content-footer footer bg-footer-theme">
+                    </footer>
+                    <div class="content-backdrop fade"></div>
+                </div>
+                <!-- Content wrapper -->
+            </div>
+            <!-- / Layout page -->
+        </div>
+    </div>
+    <!-- / Layout wrapper -->
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="~/Content/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="~/Content/assets/vendor/libs/popper/popper.js"></script>
+    <script src="~/Content/assets/vendor/js/bootstrap.js"></script>
+    <script src="~/Content/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="~/Content/assets/vendor/js/menu.js"></script>
+    <!-- endbuild -->
+    <!-- Vendors JS -->
+    <script src="~/Content/assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
+    <!-- Main JS -->
+    <script src="~/Content/assets/js/main.js"></script>
+
+    <!-- Page JS -->
+    <script src="~/Content/assets/js/dashboards-analytics.js"></script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+</html>
+
+
+
+
+@*bu ekranda ilk kullanıcının kayıtları geliyor sadece ve dinamik olmadı
+ECZANE envanter butonuna bastığında id boş görünüyor*@

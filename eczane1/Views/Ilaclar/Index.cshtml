@@ -1,0 +1,136 @@
+﻿@using eczane1.Models
+@model List<tbl_ilac>
+@{
+    ViewBag.Title = "İlaçlar";
+}
+<div class="block-heading">
+    <div class="main-text h2">
+        İlaçlar
+    </div>
+    @if (User.IsInRole("admin"))
+            {
+<a href="/Ilaclar/Ekle" class="btn btn-success"> Yeni İlaç Ekle</a>
+            }
+        
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Ürün ID</th>
+                <th>Ürün Adı</th>
+                <th>İlaç Kodu</th>
+                <th>İlaç SKT</th>
+                <th>Fiyat</th>
+                <th>Türü</th>
+                @if (User.IsInRole("admin"))
+                {
+                    <th>Sil</th>
+                }
+                @if (User.IsInRole("admin") || User.IsInRole("eczane"))
+                {
+
+                    <th>Güncelle</th>
+                }
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ilac_id</td>
+                    <td>@item.ilac_ad</td>
+                    <td>@item.ilac_kod</td>
+                    <td>@item.ilac_skt</td>
+                    <td>@item.ilac_fiyat</td>
+                    @if (item.tbl_ilac_turu == null)
+                    {
+                        <td></td>
+                    }
+                    else
+                    {
+                        <td>@item.tbl_ilac_turu.ilac_turu_ad</td>
+                    }
+
+                    @if (User.IsInRole("admin") || User.IsInRole("eczane"))
+                    {
+                        if (User.IsInRole("admin"))
+                        {
+                            <td><button type="button" class="btn btn-danger modal-ac" data-ilcID="@item.ilac_id" data-ilcAdi="@item.ilac_ad" data-bs-toggle="modal" data-bs-target="#smallModal">Sil</button></td>
+                        }
+                        <td><a href="/Ilaclar/Guncelle/@item.ilac_id" class="rounded btn btn-primary "> Güncelle</a></td>
+
+                    }
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="block-controls">
+        <span aria-hidden="true" class="icon icon-cross icon-size-medium block-control-remove"></span>
+        <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="modal fade" id="smallModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
+                <button type = "button" class = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"> </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col mb-3">
+                        <p id="soruP"></p>
+                    </div>
+                </div>
+                <div class="row g-2">
+                    <div class="col mb-0">
+                        <p id="silmeHatasi"></p>
+                    </div>
+                    <div class="col mb-0">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">İptal </button>
+                <button type="button" id="ilaciSil" class="btn me-2 btn-danger"> Sil</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Content/libs/jquery/jquery.js"></script>
+    <script>
+        $(".modal-ac").click(function () {
+            var ilcAdi = $(this).attr("data-ilcAdi");
+            var ilcID = $(this).attr("data-ilcID");
+            $("#soruP").html(ilcAdi + " isimli ilaç kaydı silinsin mi?");
+            $("#ilaciSil").attr("iID", ilcID);
+        });
+        $("#ilaciSil").click(function () {
+            var ilcID = $(this).attr("iID");
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "/Ilaclar/sil/" + ilcID,
+                    success: function (durum) {
+                        if (durum == "başarılı") {
+                            window.location.replace("/Ilaclar/index");
+                        }
+                        else {
+                            $("#silmeHatasi").html("Hata Oluştu" + durum);
+                        }
+                    }
+                });
+        });
+    </script>
+}

@@ -1,0 +1,128 @@
+﻿@using eczane1.Models
+@model List<tbl_kullanici>
+@{
+    ViewBag.Title = "Kullanıcı Hesapları";
+}
+
+<tr>
+
+
+    <td></td>
+</tr>
+
+
+
+<div class="col-md mb-4 mb-md-0">
+    <small class="text-light fw-semibold">Kayıtlı Kullanıcılar</small>
+    <div class="accordion mt-3" id="accordionExample">
+
+        @foreach (var item in Model)
+        {
+            <div class="mb-3 row">
+                <div class="card accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#SJ_@item.kullanici_id" aria-expanded="false" aria-controls="accordionOne">
+                            @item.kullanici_nickname
+                        </button>
+                    </h2>
+
+                    <div id="SJ_@item.kullanici_id" class="accordion-collapse collapse" data-bs-parent="#accordionExample" style="">
+                        <div class="accordion-body">
+                            <label for="html5-search-input" class="col-md-2 col-form-label">Kullanıcı ID</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" disabled value="@item.kullanici_id" aria-describedby="defaultFormControlHelp">
+                            </div>
+                            <label for="html5-search-input" class="col-md-2 col-form-label">Kullanıcı Adı</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" disabled value="@item.kullanici_nickname" aria-describedby="defaultFormControlHelp">
+                            </div>
+                            <label for="html5-search-input" class="col-md-2 col-form-label">Ad</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" disabled value="@item.kullanici_ad" aria-describedby="defaultFormControlHelp">
+                            </div>
+                            <label for="html5-search-input" class="col-md-2 col-form-label">Soyad</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" disabled value="@item.kullanici_soyad" aria-describedby="defaultFormControlHelp">
+                            </div>
+
+                            <label for="html5-search-input" class="col-md-2 col-form-label">Telefon Numarası</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" disabled value="@item.kullanici_telefon" aria-describedby="defaultFormControlHelp">
+                            </div>
+
+                            <button type="button" class="btn btn-danger modal-ac" data-usrID="@item.kullanici_id" data-usrAdi="@item.kullanici_nickname" data-bs-toggle="modal" data-bs-target="#smallModal">Sil</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="modal fade" id="smallModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col mb-3">
+                        <p id="soruP"></p>
+                    </div>
+                </div>
+                <div class="row g-2">
+                    <div class="col mb-0">
+                        <p id="silmeHatasi"></p>
+                    </div>
+                    <div class="col mb-0">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">İptal </button>
+                <button type="button" id="ilaciSil" class="btn me-2 btn-danger"> Sil</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Content/libs/jquery/jquery.js"></script>
+    <script>
+        $(".modal-ac").click(function () {
+            var usrAdi = $(this).attr("data-usrAdi");
+            var usrID = $(this).attr("data-usrID");
+            $("#soruP").html(usrAdi + " kullanıcısının kaydı silinsin mi?");
+            $("#ilaciSil").attr("iID", usrID);
+        });
+        $("#ilaciSil").click(function () {
+            var usrID = $(this).attr("iID");
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "/AdminIndex/KullaniciSil/" + usrID,
+                    success: function (durum) {
+                        if (durum == "başarılı") {
+                            window.location.replace("/AdminIndex/Kullanicilar");
+                        }
+                        else {
+                            $("#silmeHatasi").html("Hata Oluştu" + durum);
+                        }
+                    }
+                });
+        });
+    </script>
+}

@@ -1,0 +1,120 @@
+CREATE TABLE [dbo].[tbl_admin] (
+    [admin_id]       INT          IDENTITY (1, 1) NOT NULL,
+    [admin_nickname] VARCHAR (50) NOT NULL,
+    [admin_password] VARCHAR (50) NOT NULL,
+    [admin_ad]       VARCHAR (50) NULL,
+    [rol_id]         INT          NULL,
+    PRIMARY KEY CLUSTERED ([admin_id] ASC),
+    UNIQUE NONCLUSTERED ([admin_nickname] ASC),
+    CONSTRAINT [FK_admin_rol] FOREIGN KEY ([rol_id]) REFERENCES [dbo].[tbl_rol] ([rol_id])
+);
+
+CREATE TABLE [dbo].[tbl_eczane] (
+    [eczane_id]       INT          IDENTITY (1, 1) NOT NULL,
+    [eczane_nickname] VARCHAR (50) NOT NULL,
+    [eczane_password] VARCHAR (50) NOT NULL,
+    [eczane_tescil]   INT          NULL,
+    [eczane_ad]       VARCHAR (50) NULL,
+    [eczane_telefon]  VARCHAR (50) NULL,
+    [mahalle_id]      INT          NOT NULL,
+    [rol_id]          INT          NOT NULL,
+    PRIMARY KEY CLUSTERED ([eczane_id] ASC),
+    UNIQUE NONCLUSTERED ([eczane_tescil] ASC),
+    UNIQUE NONCLUSTERED ([eczane_nickname] ASC),
+    CONSTRAINT [FK_mahalle] FOREIGN KEY ([mahalle_id]) REFERENCES [dbo].[tbl_mahalle] ([mahalle_id]),
+    CONSTRAINT [FK_eczane_rol] FOREIGN KEY ([rol_id]) REFERENCES [dbo].[tbl_rol] ([rol_id])
+);
+
+CREATE TABLE [dbo].[tbl_eczane_ilac] (
+    [eczene_ilac_id] INT IDENTITY (1, 1) NOT NULL,
+    [eczane_id]      INT NOT NULL,
+    [ilac_id]        INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([eczene_ilac_id] ASC),
+    CONSTRAINT [FK_eczane_ilac_turu_eczane_id] FOREIGN KEY ([eczane_id]) REFERENCES [dbo].[tbl_eczane] ([eczane_id]),
+    CONSTRAINT [FK_eczane_ilac_turu_ilac_id] FOREIGN KEY ([ilac_id]) REFERENCES [dbo].[tbl_ilac] ([ilac_id])
+);
+
+CREATE TABLE [dbo].[tbl_il] (
+    [il_id] SMALLINT      IDENTITY (1, 1) NOT NULL,
+    [il_ad] NVARCHAR (16) COLLATE Turkish_CI_AS NULL,
+    CONSTRAINT [PK_tbl_iller] PRIMARY KEY CLUSTERED ([il_id] ASC)
+);
+
+CREATE TABLE [dbo].[tbl_ilac] (
+    [ilac_id]      INT          IDENTITY (1, 1) NOT NULL,
+    [ilac_ad]      VARCHAR (50) NOT NULL,
+    [ilac_kod]     INT          NOT NULL,
+    [ilac_fiyat]   SMALLMONEY   NULL,
+    [ilac_turu_id] INT          NULL,
+    [ilac_skt]     DATE         NULL,
+    PRIMARY KEY CLUSTERED ([ilac_id] ASC),
+    UNIQUE NONCLUSTERED ([ilac_kod] ASC),
+    UNIQUE NONCLUSTERED ([ilac_ad] ASC),
+    CONSTRAINT [FK_ilac_turu_id] FOREIGN KEY ([ilac_turu_id]) REFERENCES [dbo].[tbl_ilac_turu] ([ilac_turu_id])
+);
+
+CREATE TABLE [dbo].[tbl_ilac_turu] (
+    [ilac_turu_id] INT          IDENTITY (1, 1) NOT NULL,
+    [ilac_turu_ad] VARCHAR (50) NULL,
+    PRIMARY KEY CLUSTERED ([ilac_turu_id] ASC)
+);
+
+CREATE TABLE [dbo].[tbl_ilce] (
+    [ilce_id] SMALLINT      IDENTITY (1, 1) NOT NULL,
+    [il_id]   SMALLINT      NOT NULL,
+    [ilce_ad] NVARCHAR (32) COLLATE Turkish_CI_AS NULL,
+    CONSTRAINT [PK_tbl_ilce] PRIMARY KEY CLUSTERED ([ilce_id] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_ilce]
+    ON [dbo].[tbl_ilce]([ilce_id] ASC, [il_id] ASC);
+CREATE TABLE [dbo].[tbl_kullanici] (
+    [kullanici_id]       INT          IDENTITY (1, 1) NOT NULL,
+    [kullanici_nickname] VARCHAR (50) NOT NULL,
+    [kullanici_password] VARCHAR (50) NOT NULL,
+    [kullanici_ad]       VARCHAR (50) NULL,
+    [kullanici_soyad]    VARCHAR (50) NULL,
+    [kullanici_telefon]  VARCHAR (50) NULL,
+    [rol_id]             INT          NULL,
+    PRIMARY KEY CLUSTERED ([kullanici_id] ASC),
+    UNIQUE NONCLUSTERED ([kullanici_nickname] ASC),
+    CONSTRAINT [FK_kullanici_rol] FOREIGN KEY ([rol_id]) REFERENCES [dbo].[tbl_rol] ([rol_id])
+);
+
+CREATE TABLE [dbo].[tbl_mahalle] (
+    [mahalle_id] INT           IDENTITY (1, 1) NOT NULL,
+    [semt_id]    SMALLINT      NOT NULL,
+    [mahalle_ad] NVARCHAR (40) COLLATE Turkish_CI_AS NULL,
+    [pk_id]      SMALLINT      NULL,
+    CONSTRAINT [PK_tbl_mahalle] PRIMARY KEY CLUSTERED ([mahalle_id] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_mahalle]
+    ON [dbo].[tbl_mahalle]([mahalle_id] ASC, [semt_id] ASC);
+
+CREATE TABLE [dbo].[tbl_rol] (
+    [rol_id] INT          IDENTITY (1, 1) NOT NULL,
+    [rol_ad] VARCHAR (50) NULL,
+    PRIMARY KEY CLUSTERED ([rol_id] ASC)
+);
+
+CREATE TABLE [dbo].[tbl_semt] (
+    [semt_id] SMALLINT      IDENTITY (1, 1) NOT NULL,
+    [ilce_id] SMALLINT      NOT NULL,
+    [semt_ad] NVARCHAR (32) COLLATE Turkish_CI_AS NULL,
+    CONSTRAINT [PK_tbl_semtler] PRIMARY KEY CLUSTERED ([semt_id] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_semt]
+    ON [dbo].[tbl_semt]([semt_id] ASC, [ilce_id] ASC);
+
+
+
+
+

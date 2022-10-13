@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2ae4885f9af9496eb46dd2c5cc1b84e0" Name="Diagram1">
+        <EntityTypeShape EntityType="EczaneDataBaseModel2.tbl_admin" Width="1.5" PointX="0.5" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EczaneDataBaseModel2.tbl_eczane" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EczaneDataBaseModel2.tbl_eczane_ilac" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EczaneDataBaseModel2.tbl_il" Width="1.5" PointX="8.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EczaneDataBaseModel2.tbl_ilac" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EczaneDataBaseModel2.tbl_ilac_turu" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="EczaneDataBaseModel2.tbl_ilce" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EczaneDataBaseModel2.tbl_kullanici" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EczaneDataBaseModel2.tbl_mahalle" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EczaneDataBaseModel2.tbl_rol" Width="1.5" PointX="0.625" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EczaneDataBaseModel2.tbl_semt" Width="1.5" PointX="7.75" PointY="4.125" IsExpanded="true" />
+        <AssociationConnector Association="EczaneDataBaseModel2.FK_eczane_ilac_turu_eczane_id" ManuallyRouted="false" />
+        <AssociationConnector Association="EczaneDataBaseModel2.FK_eczane_rol" ManuallyRouted="false" />
+        <AssociationConnector Association="EczaneDataBaseModel2.FK_mahalle" ManuallyRouted="false" />
+        <AssociationConnector Association="EczaneDataBaseModel2.FK_eczane_ilac_turu_ilac_id" ManuallyRouted="false" />
+        <AssociationConnector Association="EczaneDataBaseModel2.FK_ilac_turu_id" ManuallyRouted="false" />
+        <AssociationConnector Association="EczaneDataBaseModel2.FK_kullanici_rol" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EczaneDataBaseModel2.Ilceler" Width="1.5" PointX="11.125" PointY="9.875" />
+        <EntityTypeShape EntityType="EczaneDataBaseModel2.Iller" Width="1.5" PointX="8.875" PointY="10" />
+        <AssociationConnector Association="EczaneDataBaseModel2.FK__Ilceler__IlID__04E4BC85" />
+        <AssociationConnector Association="EczaneDataBaseModel2.FK_admin_rol" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

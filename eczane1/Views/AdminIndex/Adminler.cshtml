@@ -1,0 +1,39 @@
+﻿
+@using eczane1.Models
+@model List<tbl_admin>
+@{
+    ViewBag.Title = "Admin Hesapları";
+}
+<div class="block-heading">
+    <div class="main-text h2">
+        Admin Hesapları
+    </div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Admin ID</th>
+                <th>Admin Kullanıcı Adı</th>
+                <th>Hesap Adı</th>
+                
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.admin_id</td>
+                    <td>@item.admin_nickname</td>
+                    <td>@item.admin_ad</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="block-controls">
+        <span aria-hidden="true" class="icon icon-cross icon-size-medium block-control-remove"></span>
+        <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+    </div>
+</div>
+
+
+

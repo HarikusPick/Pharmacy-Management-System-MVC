@@ -1,0 +1,75 @@
+﻿@using eczane1.Models
+@model List<tbl_eczane_ilac>
+@{
+    ViewBag.Title = "Eczanelerin İlaçları";
+}
+
+
+<div class="block-heading">
+    <div class="main-text h2">
+        Eczanenin İlaçları
+    </div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>İlaç ID</th>
+                <th>İlaç Adı</th>
+                <th>İlaç Türü</th>
+                <th>Değiştir</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>@item.ilac_id</td>
+                    <td>@item.tbl_ilac.ilac_ad</td>
+                    <td>@item.tbl_ilac.tbl_ilac_turu.ilac_turu_ad</td>
+                    <td>
+                        <div class="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a data-ilcID="@item.eczene_ilac_id" class="dropdown-item modal-ac" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Sil</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="block-controls">
+        <span aria-hidden="true" class="icon icon-cross icon-size-medium block-control-remove"></span>
+        <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Content/libs/jquery/jquery.js"></script>
+    <script>
+        $(".modal-ac").click(function () {
+
+            var ilcID = $(this).attr("data-ilcID");
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "/AdminEczaneler/sil/" + ilcID,
+                    success: function (durum) {
+                        if (durum == "başarılı") {
+                            alert("Kayıt Silindi");
+                            window.location.replace("/AdminEczaneler/index");
+                        }
+                        else {
+                            $("#silmeHatasi").html("Hata Oluştu" + durum);
+                        }
+                    }
+                });
+        });
+
+
+
+
+    </script>
+}

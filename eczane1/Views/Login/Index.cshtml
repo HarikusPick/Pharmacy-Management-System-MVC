@@ -1,0 +1,191 @@
+﻿@using eczane1.Models
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/LoginCSS.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        .switchh {
+            position: relative;
+            display: block;
+            vertical-align: top;
+            width: 100px;
+            height: 30px;
+            padding: 3px;
+            margin: 0 10px 10px 0;
+            background: linear-gradient(to bottom, #eeeeee, #FFFFFF 25px);
+            background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF 25px);
+            border-radius: 18px;
+            box-shadow: inset 0 -1px white, inset 0 1px 1px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+        }
+
+        .switchh-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+        }
+
+        .switchh-label {
+            position: relative;
+            display: block;
+            height: inherit;
+            font-size: 10px;
+            text-transform: uppercase;
+            background: #eceeef;
+            border-radius: inherit;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.15);
+        }
+
+            .switchh-label:before, .switchh-label:after {
+                position: absolute;
+                top: 50%;
+                margin-top: -.5em;
+                line-height: 1;
+                -webkit-transition: inherit;
+                -moz-transition: inherit;
+                -o-transition: inherit;
+                transition: inherit;
+            }
+
+            .switchh-label:before {
+                content: attr(data-off);
+                right: 11px;
+                color: #aaaaaa;
+                text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+            }
+
+            .switchh-label:after {
+                content: attr(data-on);
+                left: 11px;
+                color: #FFFFFF;
+                text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+                opacity: 0;
+            }
+
+        .switchh-input:checked ~ .switchh-label {
+            background: #E1B42B;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.2);
+        }
+
+            .switchh-input:checked ~ .switchh-label:before {
+                opacity: 0;
+            }
+
+            .switchh-input:checked ~ .switchh-label:after {
+                opacity: 1;
+            }
+
+        .switchh-handle {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(to bottom, #FFFFFF 40%, #f0f0f0);
+            background-image: -webkit-linear-gradient(top, #FFFFFF 40%, #f0f0f0);
+            border-radius: 100%;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        }
+
+            .switchh-handle:before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin: -6px 0 0 -6px;
+                width: 12px;
+                height: 12px;
+                background: linear-gradient(to bottom, #eeeeee, #FFFFFF);
+                background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF);
+                border-radius: 6px;
+                box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);
+            }
+
+        .switchh-input:checked ~ .switchh-handle {
+            left: 74px;
+            box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);
+        }
+        /* Transition
+        ========================== */
+        .switchh-label, .switchh-handle {
+            transition: All 0.3s ease;
+            -webkit-transition: All 0.3s ease;
+            -moz-transition: All 0.3s ease;
+            -o-transition: All 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="container a-container" id="a-container">
+            <form class="form" id="GirisForm" method="post" action="/Login/Index/">
+                <h2 class="form_title title">Giriş Yap</h2>
+                <input name="kullanici_nickname" class="form__input" type="text" placeholder="Kullanıcı Adı">
+                <input name="kullanici_password" class="form__input" type="password" placeholder="Şifre">
+                <button type="submit" style="cursor:pointer;" class="form__button button">Giriş Yap</button>
+                <a class="button" style="text-decoration: none !important; justify-content:center; align-items:center; display:flex;" href="/EczaneLogin/Index">Eczane Girişi</a>
+            </form>
+        </div>
+        <div class="container b-container" id="b-container">
+            <form role="form" class="form" id="KayitForm" method="post" action="/Login/Ekle/">
+                <h3 class="form_title title">Sisteme Kayıt Ol</h3>
+                <input id="nick" name="kullanici_nickname" class="form__input" required type="text" placeholder="Kullanıcı Adı" onkeyup="checkNickname()">
+                <span id="spanmess"></span>
+                <input name="kullanici_password" class="form__input" required type="password" placeholder="Şifre">
+                <input name="kullanici_ad" class="form__input" required type="text" placeholder="İsim">
+                <input name="kullanici_soyad" class="form__input" required type="text" placeholder="Soyisim">
+                <input name="kullanici_telefon" class="form__input" required type="text" placeholder="Telefon">
+                <input name="rol_id" type="hidden" value="2">
+                <button type="submit" class="switch__button button switch-btn">Kayıt Ol</button>
+            </form>
+        </div>
+        <script src="~/Content/jquery-1.11.1.min.js"></script>
+        <script>
+            function checkNickname() {
+                var nick = $("#nick").val();
+                $.ajax({
+                    type: "post",
+                    url: "/Login/checkUsername",
+                    data: '{username:"' + nick + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        var mess = $("#spanmess");
+                        if (result) {
+                            mess.html("kullanıcı adı müsait");
+                            mess.css("color", "green");
+                        }
+                        else {
+                            mess.html("kullanıcı adı alınmış!");
+                            mess.css("color", "red");
+                        }
+                    }
+                })
+            }
+        </script>
+        <div class="switch" id="switch-cnt">
+            <div class="switch__circle"></div>
+            <div class="switch__circle switch__circle--t"></div>
+            <div class="switch__container" id="switch-c1">
+                <h3 class="switch__title title">Hesabınız Yok Mu?</h3>
+                <p class="switch__description description">Kayıt Olmak İstiyorum! </p>
+                <button class="switch__button button switch-btn">Kayıt Ol</button>
+            </div>
+            <div class="switch__container is-hidden" id="switch-c2">
+                <h2 class="switch__title title">Tekrardan Hoşgeldiniz!</h2>
+                <p class="switch__description description">Hesabım Var</p>
+                <button class="switch__button button switch-btn">Giriş Yap</button>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/Login/LoginJS.js"></script>
+</body>
+</html>
